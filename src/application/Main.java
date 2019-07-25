@@ -37,6 +37,15 @@ public class Main {
 			Agenda findId = agendaDao.findById(2);
 			System.out.println(findId);
 			
+			
+			Agenda person = agendaDao.findById(1);
+			person.setName("Martha");
+			person.setNumber("3534-4553");
+			person.setEmail("martha@gmail.com");
+			agendaDao.update(person);
+			System.out.println("Update completed");
+			
+			
 			List<Agenda> list = agendaDao.findAll();
 			for (Agenda obj : list) {
 				System.out.println(obj);

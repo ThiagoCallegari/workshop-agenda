@@ -150,12 +150,14 @@ private Connection conn;
 		PreparedStatement st = null;
 		try {
 			st = (PreparedStatement) conn.prepareStatement(
-				"UPDATE agenda " +
-				"SET Name = ? " +
-				"WHERE Id = ?");
+				"UPDATE agenda "
+				+ "SET Name = ?, Number = ?, Email = ? "
+				+ "WHERE idAgenda = ?");
 
 			st.setString(1, obj.getName());
-			st.setInt(2, obj.getId());
+			st.setString(2, obj.getNumber());
+			st.setString(3, obj.getEmail());
+			st.setInt(4, obj.getId());
 
 			st.executeUpdate();
 		}
