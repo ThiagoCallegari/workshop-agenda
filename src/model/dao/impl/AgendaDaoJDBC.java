@@ -29,13 +29,43 @@ private Connection conn;
 		ResultSet rs = null;
 		try {
 			st = (PreparedStatement) conn.prepareStatement(
-				"SELECT * FROM Agenda WHERE Name = ?");
+				"SELECT * FROM agenda WHERE Name = ?");
 			st.setString(1, name);
 			rs = st.executeQuery();
 			if (rs.next()) {
 				Agenda obj = new Agenda();
-				obj.setId(rs.getInt("Id"));
+				obj.setId(rs.getInt("idAgenda"));
 				obj.setName(rs.getString("Name"));
+				obj.setNumber(rs.getString("Number"));
+				obj.setEmail(rs.getString("Email"));
+				return obj;
+			}
+			return null;
+		}
+		catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		}
+		finally {
+			DB.closeStatement(st);
+			DB.closeResultSet(rs);
+		}
+	}
+	
+	@Override
+	public Agenda findById(Integer id) {
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		try {
+			st = (PreparedStatement) conn.prepareStatement(
+				"SELECT * FROM agenda WHERE idAgenda = ?");
+			st.setInt(1, id);
+			rs = st.executeQuery();
+			if (rs.next()) {
+				Agenda obj = new Agenda();
+				obj.setId(rs.getInt("idAgenda"));
+				obj.setName(rs.getString("Name"));
+				obj.setNumber(rs.getString("Number"));
+				obj.setEmail(rs.getString("Email"));
 				return obj;
 			}
 			return null;

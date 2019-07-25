@@ -10,5 +10,6 @@ public interface AgendaDao {
 	void update(Agenda obj);
 	void deleteByName(String name);
 	Agenda findByName(String name);
+	Agenda findById(Integer id);
 	List<Agenda> findAll();
 }
