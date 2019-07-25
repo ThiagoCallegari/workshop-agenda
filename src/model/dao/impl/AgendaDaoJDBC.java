@@ -85,15 +85,17 @@ private Connection conn;
 		ResultSet rs = null;
 		try {
 			st = (PreparedStatement) conn.prepareStatement(
-				"SELECT * FROM department ORDER BY Name");
+				"SELECT * FROM agenda ORDER BY Name");
 			rs = st.executeQuery();
 
 			List<Agenda> list = new ArrayList<>();
 
 			while (rs.next()) {
 				Agenda obj = new Agenda();
-				obj.setId(rs.getInt("Id"));
+				obj.setId(rs.getInt("idAgenda"));
 				obj.setName(rs.getString("Name"));
+				obj.setNumber(rs.getString("Number"));
+				obj.setEmail(rs.getString("Email"));
 				list.add(obj);
 			}
 			return list;

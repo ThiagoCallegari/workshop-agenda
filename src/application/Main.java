@@ -1,6 +1,7 @@
 package application;
 
 import java.sql.Connection;
+import java.util.List;
 
 import db.DB;
 import model.dao.AgendaDao;
@@ -35,6 +36,11 @@ public class Main {
 			
 			Agenda findId = agendaDao.findById(2);
 			System.out.println(findId);
+			
+			List<Agenda> list = agendaDao.findAll();
+			for (Agenda obj : list) {
+				System.out.println(obj);
+			}
 		}
 		finally {
 			DB.closeConnection();
