@@ -2,6 +2,7 @@ package application;
 
 import java.sql.Connection;
 import java.util.List;
+import java.util.Scanner;
 
 import db.DB;
 import model.dao.AgendaDao;
@@ -13,6 +14,8 @@ public class Main {
 	public static void main(String[] args) {
 		
 		try {
+			Scanner sc = new Scanner(System.in);
+			
 			Connection conn = DB.getConnection();
 		
 			AgendaDao agendaDao = DaoFactory.createAgendaDao();
@@ -45,10 +48,18 @@ public class Main {
 			agendaDao.update(person);
 			System.out.println("Update completed");
 			
+
+			System.out.println("Enter id for delete test: ");
+			int id = sc.nextInt();
+			agendaDao.deleteById(id);
+			System.out.println("Delete completed");
+			
 			
 			List<Agenda> list = agendaDao.findAll();
 			for (Agenda obj : list) {
 				System.out.println(obj);
+				
+			sc.close();
 			}
 		}
 		finally {

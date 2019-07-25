@@ -24,6 +24,6 @@ private AgendaDao dao = DaoFactory.createAgendaDao();
 	}
 	
 	public void remove(Agenda obj) {
-		dao.deleteByName(obj.getName());
+		dao.deleteById(obj.getId());
 	}
 }

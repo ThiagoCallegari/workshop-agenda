@@ -170,13 +170,13 @@ private Connection conn;
 	}
 
 	@Override
-	public void deleteByName(String name) {
+	public void deleteById(Integer id) {
 		PreparedStatement st = null;
 		try {
 			st = (PreparedStatement) conn.prepareStatement(
-				"DELETE FROM agenda WHERE Name = ?");
+				"DELETE FROM agenda WHERE idAgenda = ?");
 
-			st.setString(1, name);
+			st.setInt(1, id);
 
 			st.executeUpdate();
 		}
